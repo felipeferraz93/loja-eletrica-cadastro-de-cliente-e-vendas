@@ -7,5 +7,5 @@ Projeto desenvolvido para as matérias de linguagens de programação e banco de
 # Loja Elétrica - Logo
 
 <h2 align="center">
-  <img alt="Logo Loja Elétrica" title="Logo Loja Elétrica" src=".github/Logo.png" /> 
+  <img alt="Logo Loja Elétrica" title="Logo Loja Elétrica" src=".github/logo.png" /> 
 </h2>
