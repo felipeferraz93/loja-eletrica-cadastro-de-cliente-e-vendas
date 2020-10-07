@@ -6,13 +6,11 @@ Projeto desenvolvido para as matérias de "Linguagens de Programação" e "Banco
 
 # Dados da loja
 
-<span>
 * Nome: Loja Elétrica
 * Ramo: Loja de materiais elétricos em geral
-</span>
 
 # Loja Elétrica - Logo
 
 <h2 align="center">
-  <img alt="Logo Loja Elétrica" title="Logo Loja Elétrica" src=".github/logo.png" /> 
+  <img alt="Logo Loja Elétrica" width="300" title="Logo Loja Elétrica" src=".github/logo.png" /> 
 </h2>
