@@ -18,6 +18,7 @@ public class ClienteController {
     public void create(Cliente c) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
+        //teste
 
         try {
             stmt = con.prepareStatement("INSERT INTO clientes (nome,cpf,email) VALUES (?,?,?)");
