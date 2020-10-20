@@ -197,6 +197,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_clientesMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -301,7 +304,7 @@
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_pesquisaNome3" min="-2" pref="163" max="-2" attributes="0"/>
+                                      <Component id="txt_cadastro_dataNasc" min="-2" pref="163" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -311,22 +314,20 @@
                                           <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="txt_pesquisaNome5" min="-2" pref="361" max="-2" attributes="0"/>
+                                          <Component id="txt_cadastro_endereco" min="-2" pref="361" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txt_pesquisaNome8" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
+                                      <Component id="txt_cadastro_cidade" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
                                       <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="txt_pesquisaNome9" min="-2" pref="109" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="txt_cadastro_estado" min="-2" pref="109" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -334,7 +335,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="txt_cadastro_email" min="-2" pref="320" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txt_pesquisaNome7" min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="txt_cadastro_tel" min="-2" pref="205" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -373,19 +374,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="txt_cadastro_nome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt_pesquisaNome3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_cadastro_dataNasc" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txt_cadastro_cpf" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txt_cadastro_email" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_pesquisaNome7" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txt_cadastro_tel" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_cadastro_email" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -397,9 +398,9 @@
                   </Group>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txt_pesquisaNome5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_pesquisaNome8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_pesquisaNome9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_cadastro_endereco" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_cadastro_cidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_cadastro_estado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -419,7 +420,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_cadastro_nome">
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pesquisaNome3">
+        <Component class="javax.swing.JTextField" name="txt_cadastro_dataNasc">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -438,7 +439,7 @@
             <Property name="text" type="java.lang.String" value="Endere&#xe7;o: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pesquisaNome5">
+        <Component class="javax.swing.JTextField" name="txt_cadastro_endereco">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
@@ -452,9 +453,9 @@
             <Property name="text" type="java.lang.String" value="Telefone:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pesquisaNome7">
+        <Component class="javax.swing.JTextField" name="txt_cadastro_tel">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_pesquisaNome7ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_cadastro_telActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_novoCliente3">
@@ -478,9 +479,9 @@
             <Property name="text" type="java.lang.String" value="Cidade:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pesquisaNome8">
+        <Component class="javax.swing.JTextField" name="txt_cadastro_cidade">
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_pesquisaNome9">
+        <Component class="javax.swing.JTextField" name="txt_cadastro_estado">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
