@@ -5,6 +5,8 @@
  */
 package lojaeletrica;
 
+import View.UI_Login;
+
 /**
  *
  * @author Felipe
@@ -15,7 +17,8 @@ public class LojaEletrica {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        UI_Login ui_login = new UI_Login();
+        ui_login.setVisible(true);
     }
     
 }

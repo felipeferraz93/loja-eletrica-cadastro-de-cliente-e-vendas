@@ -14,7 +14,15 @@ public class Cliente {
     }
     private String nome;
     private String cpf;
-    //private Date dataNascimento;
+    private String dataNascimento;
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
     private String email;
     private String endereco;
     private String cidade;
