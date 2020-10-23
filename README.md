@@ -37,7 +37,3 @@ Projeto desenvolvido para as matérias de "Linguagens de Programação" e "Banco
     <img alt="Diagrama lógico" width="400" title="Diagrama lógico" src=".github/Diagrama Logico.png" /> 
   </div>
 
-* teste
-
-<iframe width="560" height="315" src="www.youtube.com/embed/kwAZ_Gk8XYU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
