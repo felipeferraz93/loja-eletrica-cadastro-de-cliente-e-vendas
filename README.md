@@ -11,6 +11,28 @@ Projeto desenvolvido para as matérias de "Linguagens de Programação" e "Banco
 
 # Loja Elétrica - Logo
 
-<h2 align="center">
+<div align="center">
   <img alt="Logo Loja Elétrica" width="300" title="Logo Loja Elétrica" src=".github/logo.png" /> 
-</h2>
+</div>
+
+# Aplicação - Diagramas
+
+* Digrama de Classes
+
+    <div align="center"> 
+    <img  alt="diagrama de classes" width="600" title="diagrama de classes" src="" /> 
+    </div>
+
+# Banco de Dados - Diagramas
+
+* Diagrama Entidade-Relacionamento
+
+  <div align="center"> 
+    <img  alt="DER" width="600" title="DEr" src=".github/Diagrama ER.png" /> 
+  </div>
+
+* Diagrama Lógico
+
+  <div align="center">
+    <img alt="Diagrama lógico" width="400" title="Diagrama lógico" src=".github/Diagrama Logico.png" /> 
+  </div>
