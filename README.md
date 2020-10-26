@@ -20,7 +20,7 @@ Projeto desenvolvido para as matérias de "Linguagens de Programação" e "Banco
 * Digrama de Classes
 
     <div align="center"> 
-    <img  alt="diagrama de classes" width="600" title="diagrama de classes" src="" /> 
+    <img  alt="diagrama de classes" width="800" title="diagrama de classes" src="Diagrama de Classes.png" /> 
     </div>
 
 # Banco de Dados - Diagramas
