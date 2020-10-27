@@ -7,6 +7,7 @@ package Models;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.UUID;
 
 /**
  *
@@ -24,6 +25,25 @@ public class Venda {
     private String data_criacao;    
     private String tipo_pagamento;
     private double total;
+    private String uuid;
+
+    public String getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(String dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    
 
     public String getCliente_nome() {
         return cliente_nome;

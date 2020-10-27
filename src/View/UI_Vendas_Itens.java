@@ -6,7 +6,11 @@
 package View;
 
 import Controllers.ClienteController;
+import Controllers.ProdutoController;
+import Controllers.VendaController;
 import Models.Cliente;
+import Models.Produto;
+import Models.Venda;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,33 +20,48 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UI_Vendas_Itens extends javax.swing.JFrame {
 
-    private int idUser;
+    private int idItem;
+    private static int venda_id;
 
     /**
      * Creates new form UI_Clientes
      */
-    public UI_Vendas_Itens() {
+    public UI_Vendas_Itens(int venda_id) {
+        this.venda_id = venda_id;
         initComponents();
         setLocationRelativeTo(null);
         readJtable();
+        readSellInfo();
+        readProducts();
+    }
+    
+    public void readSellInfo(){
+        VendaController vendaController = new VendaController();
+        Venda v = vendaController.read(venda_id);
+        
+        txt_cliente.setText(v.getCliente_nome());
+        txt_vendedor.setText(v.getVendedor_nome());
+        txt_data.setText(v.getDataCriacao());
+    }
+    
+    public void readProducts(){
+         DefaultTableModel modelo = (DefaultTableModel) tbl_produtos.getModel();
+
+        modelo.setNumRows(0);
+        ProdutoController produtos = new ProdutoController();
+
+        for (Produto p : produtos.list()) {
+            modelo.addRow(new Object[]{
+                p.getId(),
+                p.getNome(),
+                p.precoString(),
+                p.getUnidade()
+            });
+        }
     }
 
     public void readJtable() {
-        DefaultTableModel modelo = (DefaultTableModel) tbl_clientes.getModel();
-
-        modelo.setNumRows(0);
-        ClienteController clientes = new ClienteController();
-
-        for (Cliente c : clientes.list()) {
-            modelo.addRow(new Object[]{
-                c.getId(),
-                c.getNome(),
-                c.getCpf(),
-                c.getEmail()
-
-            });
-        }
-
+        
     }
 
     /**
@@ -132,7 +151,7 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_produtos);
 
-        btn_adicionar.setText("Excluir");
+        btn_adicionar.setText("Adicionar");
         btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_adicionarActionPerformed(evt);
@@ -278,9 +297,15 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
 
         jLabel8.setText("Cliente:");
 
+        txt_cliente.setEnabled(false);
+
         jLabel9.setText("Criado:");
 
+        txt_data.setEnabled(false);
+
         jLabel10.setText("Vendedor: ");
+
+        txt_vendedor.setEnabled(false);
 
         cb_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -312,17 +337,15 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel10)
-                                .addComponent(txt_vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel9)
-                                .addComponent(txt_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txt_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(txt_vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(txt_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(txt_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(cb_status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -360,7 +383,7 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 446, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -369,46 +392,18 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
 
     private void tbl_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_produtosMouseClicked
         int id = Integer.parseInt(tbl_produtos.getValueAt(tbl_produtos.getSelectedRow(), 0).toString());
-        idUser = id;
+        idItem = id;
 
         // JOptionPane.showMessageDialog(null,clienteController.read(id));
         //JOptionPane.showMessageDialog(null,tbl_clientes.getValueAt(tbl_clientes.getSelectedRow(),1));
     }//GEN-LAST:event_tbl_produtosMouseClicked
 
     private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
-        ProdutoController produtoController = new ProdutoController();
-
-        produtoController.delete(idUser);
-        DefaultTableModel modelo = (DefaultTableModel) tbl_produtos.getModel();
-
-        modelo.setNumRows(0);
-        ProdutoController produtos = new ProdutoController();
-
-        for (Produto p : produtos.list(txt_pesquisaNome.getText())) {
-            modelo.addRow(new Object[]{
-                p.getId(),
-                p.getNome(),
-                p.precoString(),
-                p.getUnidade()
-
-            });
-        }
+        
     }//GEN-LAST:event_btn_adicionarActionPerformed
 
     private void btn_pesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisar1ActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tbl_produtos.getModel();
-
-        modelo.setNumRows(0);
-        ProdutoController produtos = new ProdutoController();
-
-        for (Produto p : produtos.list(txt_pesquisaNome.getText())) {
-            modelo.addRow(new Object[]{
-                p.getId(),
-                p.getNome(),
-                p.precoString(),
-                p.getUnidade()
-            });
-        }
+        
     }//GEN-LAST:event_btn_pesquisar1ActionPerformed
 
     private void tbl_orcamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_orcamentoMouseClicked
@@ -448,7 +443,7 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UI_Vendas_Itens().setVisible(true);
+                new UI_Vendas_Itens(venda_id).setVisible(true);
             }
         });
     }

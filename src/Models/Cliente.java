@@ -4,6 +4,15 @@ package Models;
 public class Cliente {
     
     private int id;
+    private String nome;
+    private String cpf;
+    private String dataNascimento;
+    private String email;
+    private String endereco;
+    private String cidade;
+    private String estado;
+    private String telefone;
+    
 
     public int getId() {
         return id;
@@ -12,10 +21,7 @@ public class Cliente {
     public void setId(int id) {
         this.id = id;
     }
-    private String nome;
-    private String cpf;
-    private String dataNascimento;
-
+    
     public String getDataNascimento() {
         return dataNascimento;
     }
@@ -23,11 +29,7 @@ public class Cliente {
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    private String email;
-    private String endereco;
-    private String cidade;
-    private String estado;
-    private String telefone;
+   
 
     public String getTelefone() {
         return telefone;

@@ -10,6 +10,7 @@ import Controllers.VendaController;
 import Models.Cliente;
 import Models.Usuario;
 import Models.Venda;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -621,11 +622,20 @@ public class UI_Vendas_cliente extends javax.swing.JFrame {
         Venda v = new Venda();
         v.setCliente_id(idUser);
         v.setVendedor_id(usuario.getId());
+        UUID uuid = UUID.randomUUID();
+        v.setUuid(uuid.toString());
         
         VendaController vendaController = new VendaController();
         
         vendaController.create(v);
-
+        
+        int venda_id = vendaController.readUuid(uuid.toString());
+        
+        JOptionPane.showMessageDialog(null,venda_id);
+        
+        UI_Vendas_Itens ui__Vendas_Itens = new UI_Vendas_Itens(venda_id);
+        ui__Vendas_Itens.setVisible(true);
+        dispose();
         //função para abrir ui_vendas_itens
         
     }//GEN-LAST:event_btn_selecionaClienteActionPerformed

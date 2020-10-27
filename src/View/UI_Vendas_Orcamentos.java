@@ -278,11 +278,13 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
     private void tbl_orcamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_orcamentosMouseClicked
         int id = Integer.parseInt(tbl_orcamentos.getValueAt(tbl_orcamentos.getSelectedRow(), 0).toString());
         idUser = id;
-        ClienteController clienteController = new ClienteController();
-        Cliente cliente = clienteController.read(id);
-
         
-        id = cliente.getId();
+        
+//        ClienteController clienteController = new ClienteController();
+//        Cliente cliente = clienteController.read(id);
+//
+//        
+//        id = cliente.getId();
 
         // JOptionPane.showMessageDialog(null,clienteController.read(id));
         //JOptionPane.showMessageDialog(null,tbl_clientes.getValueAt(tbl_clientes.getSelectedRow(),1));
@@ -302,8 +304,8 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
 
     private void btn_novoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoClienteActionPerformed
         if (idUser != 0) {
-            tbl_orcamentos.setEnabled(false);
-            
+           UI_Vendas_Itens ui_Vendas_Itens = new UI_Vendas_Itens((idUser));
+           ui_Vendas_Itens.setVisible(true);            
         }
     }//GEN-LAST:event_btn_novoClienteActionPerformed
 
