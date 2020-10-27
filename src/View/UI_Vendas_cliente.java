@@ -6,7 +6,10 @@
 package View;
 
 import Controllers.ClienteController;
+import Controllers.VendaController;
 import Models.Cliente;
+import Models.Usuario;
+import Models.Venda;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,17 +17,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Felipe
  */
-public class UI_Clientes extends javax.swing.JFrame {
-
+public class UI_Vendas_cliente extends javax.swing.JFrame {
+    
+    private static Usuario usuario;
     private int idUser;
 
     /**
      * Creates new form UI_Clientes
      */
-    public UI_Clientes() {
+    public UI_Vendas_cliente(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
         setLocationRelativeTo(null);
         readJtable();
+        
     }
 
     public void readJtable() {
@@ -67,7 +73,7 @@ public class UI_Clientes extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_pesquisaEmail = new javax.swing.JTextField();
         btn_pesquisar = new javax.swing.JButton();
-        btn_novoCliente3 = new javax.swing.JButton();
+        btn_selecionaCliente = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -172,10 +178,10 @@ public class UI_Clientes extends javax.swing.JFrame {
             }
         });
 
-        btn_novoCliente3.setText("id");
-        btn_novoCliente3.addActionListener(new java.awt.event.ActionListener() {
+        btn_selecionaCliente.setText("Selecionar Cliente P/ Orçamento");
+        btn_selecionaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_novoCliente3ActionPerformed(evt);
+                btn_selecionaClienteActionPerformed(evt);
             }
         });
 
@@ -185,33 +191,35 @@ public class UI_Clientes extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txt_pesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_pesquisaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_pesquisaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_pesquisar))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txt_pesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_pesquisaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_pesquisaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_pesquisar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(180, 180, 180)
+                                .addComponent(jLabel4)
+                                .addGap(184, 184, 184)
+                                .addComponent(jLabel6))
+                            .addComponent(jScrollPane1))
+                        .addContainerGap(64, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel4)
-                        .addGap(184, 184, 184)
-                        .addComponent(jLabel6))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(64, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_novoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_novoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btn_novoCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(btn_novoCliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                        .addGap(10, 10, 10)
+                        .addComponent(btn_novoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_novoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btn_novoCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_selecionaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +246,7 @@ public class UI_Clientes extends javax.swing.JFrame {
                     .addComponent(btn_novoCliente1)
                     .addComponent(btn_novoCliente)
                     .addComponent(btn_novoCliente2)
-                    .addComponent(btn_novoCliente3))
+                    .addComponent(btn_selecionaCliente))
                 .addGap(30, 30, 30))
         );
 
@@ -250,7 +258,7 @@ public class UI_Clientes extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("CLIENTES");
+        jLabel2.setText("SELECIONE O CLIENTE");
         jLabel2.setToolTipText("");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -608,9 +616,19 @@ public class UI_Clientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_novoCliente2ActionPerformed
 
-    private void btn_novoCliente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoCliente3ActionPerformed
-        JOptionPane.showMessageDialog(null, idUser);
-    }//GEN-LAST:event_btn_novoCliente3ActionPerformed
+    private void btn_selecionaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selecionaClienteActionPerformed
+        
+        Venda v = new Venda();
+        v.setCliente_id(idUser);
+        v.setVendedor_id(usuario.getId());
+        
+        VendaController vendaController = new VendaController();
+        
+        vendaController.create(v);
+
+        //função para abrir ui_vendas_itens
+        
+    }//GEN-LAST:event_btn_selecionaClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -629,20 +647,21 @@ public class UI_Clientes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UI_Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_Vendas_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UI_Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_Vendas_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UI_Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_Vendas_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UI_Clientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_Vendas_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UI_Clientes().setVisible(true);
+                new UI_Vendas_cliente(usuario).setVisible(true);
             }
         });
     }
@@ -652,9 +671,9 @@ public class UI_Clientes extends javax.swing.JFrame {
     private javax.swing.JButton btn_novoCliente;
     private javax.swing.JButton btn_novoCliente1;
     private javax.swing.JButton btn_novoCliente2;
-    private javax.swing.JButton btn_novoCliente3;
     private javax.swing.JButton btn_pesquisar;
     private javax.swing.JButton btn_salvar;
+    private javax.swing.JButton btn_selecionaCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

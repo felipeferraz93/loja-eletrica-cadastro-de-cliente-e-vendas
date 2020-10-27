@@ -5,6 +5,10 @@
  */
 package View;
 
+import Controllers.UsuarioController;
+import Models.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Felipe
@@ -16,6 +20,7 @@ public class UI_Login extends javax.swing.JFrame {
      */
     public UI_Login() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,7 +35,7 @@ public class UI_Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbl_log = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txt_user = new javax.swing.JTextField();
+        txt_login = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txt_password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
@@ -56,6 +61,11 @@ public class UI_Login extends javax.swing.JFrame {
         });
 
         jButton1.setText("Entrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,7 +76,7 @@ public class UI_Login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_user)
+                            .addComponent(txt_login)
                             .addComponent(txt_password)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,7 +101,7 @@ public class UI_Login extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,6 +130,23 @@ public class UI_Login extends javax.swing.JFrame {
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_passwordActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if (txt_login.getText().equals("") || txt_password.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite o Usuário e Senha!","Erro no Login",JOptionPane.ERROR_MESSAGE);
+        } else {
+            UsuarioController usuarioController = new UsuarioController();
+            Usuario usuario = usuarioController.read(txt_login.getText(), txt_password.getText());
+            if (usuario.isUser()) {
+                UI_Main ui_main = new UI_Main(usuario);
+                ui_main.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário ou Senha Incorretos!","Erro no Login",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,7 +189,7 @@ public class UI_Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_log;
+    private javax.swing.JTextField txt_login;
     private javax.swing.JPasswordField txt_password;
-    private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }
