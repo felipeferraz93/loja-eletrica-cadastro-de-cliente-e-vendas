@@ -3,7 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Loja El&#xe9;trica - Clientes"/>
+    <Property name="title" type="java.lang.String" value="Loja El&#xe9;trica - Vendas"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
@@ -99,7 +99,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jComboBox1" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="cb_status" min="-2" pref="165" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btn_pesquisar" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -136,7 +136,7 @@
                               <Component id="txt_pesquisaNome" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txt_pesquisaCPF" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_pesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cb_status" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -281,7 +281,7 @@
             <Property name="text" type="java.lang.String" value="N&#xb0; Or&#xe7;amento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="cb_status">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">

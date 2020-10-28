@@ -10,7 +10,11 @@ import Controllers.ProdutoController;
 import Controllers.VendaController;
 import Models.Cliente;
 import Models.Produto;
+import Models.ProdutoOrcado;
 import Models.Venda;
+import Utils.CurrencyFormatter;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,9 +34,44 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
         this.venda_id = venda_id;
         initComponents();
         setLocationRelativeTo(null);
+        atualizaCbStatus();
         readJtable();
         readSellInfo();
         readProducts();
+        readOrcamento();
+    }
+    
+    public void atualizaCbStatus(){
+        String[] status = { "Orçamento","Fechado / A Pagar", "Pago / Separação Estoque","Finalizada"};
+        DefaultComboBoxModel model = new DefaultComboBoxModel(status);
+        cb_status.setModel(model);
+        cb_status.setSelectedIndex(0);
+        
+        //statusList.addActionListener();
+                
+    }
+    
+    public void readOrcamento(){
+        DefaultTableModel modelo = (DefaultTableModel) tbl_orcamento.getModel();
+
+        modelo.setNumRows(0);
+        VendaController vendaController = new VendaController();
+        CurrencyFormatter converter = new CurrencyFormatter();
+        Double total=0.0;
+
+        for (ProdutoOrcado p : vendaController.listProducts(venda_id)) {
+            modelo.addRow(new Object[]{
+                p.getProduto_id(),
+                p.getName(),
+                p.getQuantidade(),
+                p.getUnidade(),
+                converter.real(p.getPreco()),
+                converter.real(p.getPrecoTotal())                
+            });
+            total = total + p.getPrecoTotal();
+        }
+        
+        txt_valorTotal.setText(converter.real(total));
     }
     
     public void readSellInfo(){
@@ -80,7 +119,7 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
         tbl_produtos = new javax.swing.JTable();
         btn_adicionar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        txt_pesquisaNome1 = new javax.swing.JTextField();
+        txt_pesquisaProduto = new javax.swing.JTextField();
         btn_pesquisar1 = new javax.swing.JButton();
         txt_quantidade = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -100,7 +139,7 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
         cb_status = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Loja Elétrica - Clientes");
+        setTitle("Loja Elétrica - Vendas");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
@@ -141,6 +180,7 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_produtos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbl_produtos.setGridColor(new java.awt.Color(255, 255, 255));
         tbl_produtos.setInheritsPopupMenu(true);
         tbl_produtos.setMinimumSize(new java.awt.Dimension(10, 0));
@@ -150,6 +190,12 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbl_produtos);
+        if (tbl_produtos.getColumnModel().getColumnCount() > 0) {
+            tbl_produtos.getColumnModel().getColumn(0).setResizable(false);
+            tbl_produtos.getColumnModel().getColumn(1).setResizable(false);
+            tbl_produtos.getColumnModel().getColumn(2).setResizable(false);
+            tbl_produtos.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         btn_adicionar.setText("Adicionar");
         btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +234,7 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_pesquisaNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_pesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_pesquisar1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -199,7 +245,7 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txt_pesquisaNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_pesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_pesquisar1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,13 +315,13 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -308,6 +354,11 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
         txt_vendedor.setEnabled(false);
 
         cb_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_status.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_statusItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -399,16 +450,38 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_produtosMouseClicked
 
     private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
+        ProdutoController produtoController = new ProdutoController();
+        Produto p = produtoController.read(idItem);
+        VendaController vendaController = new VendaController();
+        vendaController.addProduto(p, Integer.parseInt(txt_quantidade.getText()), venda_id);
+        readOrcamento();
         
     }//GEN-LAST:event_btn_adicionarActionPerformed
 
     private void btn_pesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisar1ActionPerformed
-        
+        DefaultTableModel modelo = (DefaultTableModel) tbl_produtos.getModel();
+
+        modelo.setNumRows(0);
+        ProdutoController produtos = new ProdutoController();
+
+        for (Produto p : produtos.list(txt_pesquisaProduto.getText())) {
+            modelo.addRow(new Object[]{
+                p.getId(),
+                p.getNome(),
+                p.precoString(),
+                p.getUnidade()
+            });
+        }
     }//GEN-LAST:event_btn_pesquisar1ActionPerformed
 
     private void tbl_orcamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_orcamentoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tbl_orcamentoMouseClicked
+
+    private void cb_statusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_statusItemStateChanged
+        VendaController venda = new VendaController();
+        venda.updateStatus(venda_id,cb_status.getSelectedItem().toString());        
+    }//GEN-LAST:event_cb_statusItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -470,7 +543,7 @@ public class UI_Vendas_Itens extends javax.swing.JFrame {
     private javax.swing.JTable tbl_produtos;
     private javax.swing.JTextField txt_cliente;
     private javax.swing.JTextField txt_data;
-    private javax.swing.JTextField txt_pesquisaNome1;
+    private javax.swing.JTextField txt_pesquisaProduto;
     private javax.swing.JTextField txt_quantidade;
     private javax.swing.JTextField txt_valorTotal;
     private javax.swing.JTextField txt_vendedor;

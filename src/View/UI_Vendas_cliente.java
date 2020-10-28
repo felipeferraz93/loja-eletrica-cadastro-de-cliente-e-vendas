@@ -631,7 +631,7 @@ public class UI_Vendas_cliente extends javax.swing.JFrame {
         
         int venda_id = vendaController.readUuid(uuid.toString());
         
-        JOptionPane.showMessageDialog(null,venda_id);
+        //JOptionPane.showMessageDialog(null,venda_id);
         
         UI_Vendas_Itens ui__Vendas_Itens = new UI_Vendas_Itens(venda_id);
         ui__Vendas_Itens.setVisible(true);

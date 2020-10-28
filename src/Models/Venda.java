@@ -5,6 +5,7 @@
  */
 package Models;
 
+import Controllers.VendaController;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.UUID;
@@ -118,6 +119,14 @@ public class Venda {
         this.total = total;
     }
     
+    public String valorTotal(){
+        
+        VendaController v = new VendaController();
+        
+        String valorFormatado = v.totalProducts(this.id);
+        
+        return valorFormatado;
+    }
     
     
     
