@@ -10,6 +10,8 @@ import Controllers.VendaController;
 import Models.Cliente;
 import Models.Usuario;
 import Models.Venda;
+import Utils.DataFormatter;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,7 +31,18 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         readJtable();
+        atualizaCbStatus();
         
+    }
+    
+    public void atualizaCbStatus(){
+        String[] status = { "Todos","Orçamento","Fechado / A Pagar", "Pago / Separação Estoque","Finalizada"};
+        DefaultComboBoxModel model = new DefaultComboBoxModel(status);
+        cb_status.setModel(model);
+        cb_status.setSelectedIndex(0);
+        
+        //statusList.addActionListener();
+                
     }
 
     public void readJtable() {
@@ -38,14 +51,19 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
         modelo.setNumRows(0);
         VendaController vendas = new VendaController();
         
+        DataFormatter d = new DataFormatter();
+        
+        
 
         for (Venda v : vendas.list()) {
+            String data = d.dataBrasil(v.getData_criacao());
+            
             modelo.addRow(new Object[]{
                 v.getId(),
                 v.getCliente_nome(),
-                v.getData_criacao(), // METODO A SER ALTERADO
+                data, // METODO A SER ALTERADO
                 v.getVendedor_nome(),
-                0.0,
+                v.valorTotal(),
                 v.getStatus()
             });
         }
@@ -74,13 +92,13 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
         btn_pesquisar = new javax.swing.JButton();
         txt_pesquisaOrcamento = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_status = new javax.swing.JComboBox<>();
         Status = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Loja Elétrica - Clientes");
+        setTitle("Loja Elétrica - Vendas");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
@@ -163,7 +181,7 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
 
         jLabel14.setText("N° Orçamento:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         Status.setText("Status:");
 
@@ -195,7 +213,7 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cb_status, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_pesquisar))
                             .addComponent(Status))
@@ -224,7 +242,7 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
                             .addComponent(txt_pesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_pesquisaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_pesquisar)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cb_status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jLabel4)))
@@ -278,18 +296,45 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
     private void tbl_orcamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_orcamentosMouseClicked
         int id = Integer.parseInt(tbl_orcamentos.getValueAt(tbl_orcamentos.getSelectedRow(), 0).toString());
         idUser = id;
-        ClienteController clienteController = new ClienteController();
-        Cliente cliente = clienteController.read(id);
-
         
-        id = cliente.getId();
+        
+//        ClienteController clienteController = new ClienteController();
+//        Cliente cliente = clienteController.read(id);
+//
+//        
+//        id = cliente.getId();
 
         // JOptionPane.showMessageDialog(null,clienteController.read(id));
         //JOptionPane.showMessageDialog(null,tbl_clientes.getValueAt(tbl_clientes.getSelectedRow(),1));
     }//GEN-LAST:event_tbl_orcamentosMouseClicked
 
     private void btn_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tbl_orcamentos.getModel();
+
+        modelo.setNumRows(0);
+        VendaController vendas = new VendaController();
         
+        String status;
+        if(cb_status.getSelectedItem().toString().equals("Todos")){
+            status="%";
+        }else{
+            status = cb_status.getSelectedItem().toString();
+        }
+        
+
+        for (Venda v : vendas.list(txt_pesquisaOrcamento.getText(),txt_pesquisaNome.getText(),txt_pesquisaCPF.getText(),status)) {
+            DataFormatter d = new DataFormatter();
+            String data = d.dataBrasil(v.getData_criacao());
+            
+            modelo.addRow(new Object[]{
+                v.getId(),
+                v.getCliente_nome(),
+                data, // METODO A SER ALTERADO
+                v.getVendedor_nome(),
+                v.valorTotal(),
+                v.getStatus()
+            });
+        }
     }//GEN-LAST:event_btn_pesquisarActionPerformed
 
     private void btn_novoCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoCliente1ActionPerformed
@@ -302,8 +347,8 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
 
     private void btn_novoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoClienteActionPerformed
         if (idUser != 0) {
-            tbl_orcamentos.setEnabled(false);
-            
+           UI_Vendas_Itens ui_Vendas_Itens = new UI_Vendas_Itens((idUser));
+           ui_Vendas_Itens.setVisible(true);            
         }
     }//GEN-LAST:event_btn_novoClienteActionPerformed
 
@@ -353,7 +398,7 @@ public class UI_Vendas_Orcamentos extends javax.swing.JFrame {
     private javax.swing.JButton btn_novoCliente1;
     private javax.swing.JButton btn_novoCliente2;
     private javax.swing.JButton btn_pesquisar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cb_status;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;

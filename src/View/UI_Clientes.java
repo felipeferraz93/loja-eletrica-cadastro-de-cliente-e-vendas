@@ -63,20 +63,18 @@ public class UI_Clientes extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_pesquisaNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txt_pesquisaCPF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txt_pesquisaEmail = new javax.swing.JTextField();
         btn_pesquisar = new javax.swing.JButton();
         btn_novoCliente3 = new javax.swing.JButton();
+        txt_pesquisaCPF = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txt_cadastro_nome = new javax.swing.JTextField();
-        txt_cadastro_dataNasc = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txt_cadastro_cpf = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txt_cadastro_endereco = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -89,6 +87,8 @@ public class UI_Clientes extends javax.swing.JFrame {
         txt_cadastro_cidade = new javax.swing.JTextField();
         txt_cadastro_estado = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        txt_cadastro_cpf = new javax.swing.JFormattedTextField();
+        txt_dataNascimento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Loja Elétrica - Clientes");
@@ -179,6 +179,12 @@ public class UI_Clientes extends javax.swing.JFrame {
             }
         });
 
+        try {
+            txt_pesquisaCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,21 +192,23 @@ public class UI_Clientes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txt_pesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_pesquisaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_pesquisaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_pesquisar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel4)
-                        .addGap(184, 184, 184)
-                        .addComponent(jLabel6))
-                    .addComponent(jScrollPane1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txt_pesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txt_pesquisaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_pesquisaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_pesquisar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(184, 184, 184)
+                                .addComponent(jLabel6)))))
                 .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -227,10 +235,10 @@ public class UI_Clientes extends javax.swing.JFrame {
                             .addComponent(jLabel6))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_pesquisar)
-                    .addComponent(txt_pesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_pesquisaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_pesquisaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_pesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_pesquisaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_pesquisaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
@@ -260,13 +268,9 @@ public class UI_Clientes extends javax.swing.JFrame {
 
         txt_cadastro_nome.setEnabled(false);
 
-        txt_cadastro_dataNasc.setEnabled(false);
-
         jLabel7.setText("Data de Nascimento:");
 
         jLabel8.setText("CPF:");
-
-        txt_cadastro_cpf.setEnabled(false);
 
         jLabel9.setText("Endereço: ");
 
@@ -309,6 +313,20 @@ public class UI_Clientes extends javax.swing.JFrame {
 
         jLabel13.setText("Estado:");
 
+        try {
+            txt_cadastro_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_cadastro_cpf.setEnabled(false);
+
+        try {
+            txt_dataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txt_dataNascimento.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -317,19 +335,38 @@ public class UI_Clientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txt_cadastro_email, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(txt_cadastro_tel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(197, 197, 197))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel11)
+                        .addGap(356, 356, 356))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(254, 254, 254))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(txt_cadastro_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(txt_cadastro_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(206, 206, 206))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txt_cadastro_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addComponent(txt_cadastro_dataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -344,44 +381,26 @@ public class UI_Clientes extends javax.swing.JFrame {
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
-                                    .addComponent(txt_cadastro_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txt_cadastro_email, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_cadastro_tel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(197, 197, 197))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11)
-                        .addGap(356, 356, 356))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(254, 254, 254))))
+                                    .addComponent(txt_cadastro_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(9, 9, 9))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_cadastro_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_cadastro_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_dataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jLabel7))
-                        .addGap(7, 7, 7)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_cadastro_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_cadastro_dataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txt_cadastro_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(33, 33, 33)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jLabel10))
@@ -449,7 +468,7 @@ public class UI_Clientes extends javax.swing.JFrame {
         c.setEndereco(txt_cadastro_endereco.getText());
         c.setEstado(txt_cadastro_estado.getText());
         c.setTelefone(txt_cadastro_tel.getText());
-        c.setDataNascimento(txt_cadastro_dataNasc.getText());
+        c.setDataNascimento(txt_dataNascimento.getText());
         c.setId(idUser);
 
         if (idUser == 0) {
@@ -457,12 +476,12 @@ public class UI_Clientes extends javax.swing.JFrame {
 
             txt_cadastro_nome.setText("");
             txt_cadastro_cpf.setText("");
-            txt_cadastro_dataNasc.setText("");
+            txt_cadastro_tel.setText("");
             txt_cadastro_email.setText("");
             txt_cadastro_cidade.setText("");
             txt_cadastro_endereco.setText("");
             txt_cadastro_estado.setText("");
-            txt_cadastro_tel.setText("");
+            txt_dataNascimento.setText("");
             idUser = 0;
         } else {
             clienteController.update(c);
@@ -473,12 +492,12 @@ public class UI_Clientes extends javax.swing.JFrame {
         tbl_clientes.setEnabled(true);
         txt_cadastro_nome.setEnabled(false);
         txt_cadastro_cpf.setEnabled(false);
-        txt_cadastro_dataNasc.setEnabled(false);
+        txt_cadastro_tel.setEnabled(false);
         txt_cadastro_email.setEnabled(false);
         txt_cadastro_cidade.setEnabled(false);
         txt_cadastro_endereco.setEnabled(false);
         txt_cadastro_estado.setEnabled(false);
-        txt_cadastro_tel.setEnabled(false);
+        txt_dataNascimento.setEnabled(false);
         btn_cancelar.setEnabled(false);
         btn_salvar.setEnabled(false);
     }//GEN-LAST:event_btn_salvarActionPerformed
@@ -487,19 +506,15 @@ public class UI_Clientes extends javax.swing.JFrame {
         tbl_clientes.setEnabled(true);
         txt_cadastro_nome.setEnabled(false);
         txt_cadastro_cpf.setEnabled(false);
-        txt_cadastro_dataNasc.setEnabled(false);
+        txt_cadastro_tel.setEnabled(false);
         txt_cadastro_email.setEnabled(false);
         txt_cadastro_cidade.setEnabled(false);
         txt_cadastro_endereco.setEnabled(false);
         txt_cadastro_estado.setEnabled(false);
-        txt_cadastro_tel.setEnabled(false);
+        txt_dataNascimento.setEnabled(false);
         btn_cancelar.setEnabled(false);
         btn_salvar.setEnabled(false);
     }//GEN-LAST:event_btn_cancelarActionPerformed
-
-    private void txt_cadastro_telActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cadastro_telActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_cadastro_telActionPerformed
 
     private void tbl_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_clientesMouseClicked
         int id = Integer.parseInt(tbl_clientes.getValueAt(tbl_clientes.getSelectedRow(), 0).toString());
@@ -509,17 +524,18 @@ public class UI_Clientes extends javax.swing.JFrame {
 
         txt_cadastro_nome.setText("");
         txt_cadastro_cpf.setText("");
-        txt_cadastro_dataNasc.setText("");
+        txt_cadastro_tel.setText("");
         txt_cadastro_email.setText("");
         txt_cadastro_cidade.setText("");
         txt_cadastro_endereco.setText("");
         txt_cadastro_estado.setText("");
         txt_cadastro_tel.setText("");
+        txt_dataNascimento.setText("");
 
         txt_cadastro_nome.setText(cliente.getNome());
         txt_cadastro_email.setText(cliente.getEmail());
         txt_cadastro_cpf.setText(cliente.getCpf());
-        txt_cadastro_dataNasc.setText(cliente.getDataNascimento());
+        txt_dataNascimento.setText(cliente.getDataNascimento());
         txt_cadastro_cidade.setText(cliente.getCidade());
         txt_cadastro_endereco.setText(cliente.getEndereco());
         txt_cadastro_estado.setText(cliente.getEstado());
@@ -535,8 +551,13 @@ public class UI_Clientes extends javax.swing.JFrame {
 
         modelo.setNumRows(0);
         ClienteController clientes = new ClienteController();
+        
+        String cpf="";
+        if(!txt_pesquisaCPF.getText().equals("   .   .   -  ")){
+            cpf = txt_pesquisaCPF.getText();
+        }
 
-        for (Cliente c : clientes.list(txt_pesquisaNome.getText(), txt_pesquisaCPF.getText(), txt_pesquisaEmail.getText())) {
+        for (Cliente c : clientes.list(txt_pesquisaNome.getText(),cpf, txt_pesquisaEmail.getText())) {
             modelo.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
@@ -550,23 +571,23 @@ public class UI_Clientes extends javax.swing.JFrame {
     private void btn_novoCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoCliente1ActionPerformed
         txt_cadastro_nome.setText("");
         txt_cadastro_cpf.setText("");
-        txt_cadastro_dataNasc.setText("");
+        txt_cadastro_tel.setText("");
         txt_cadastro_email.setText("");
         txt_cadastro_cidade.setText("");
         txt_cadastro_endereco.setText("");
         txt_cadastro_estado.setText("");
-        txt_cadastro_tel.setText("");
+        txt_dataNascimento.setText("");
         idUser = 0;
 
         tbl_clientes.setEnabled(false);
         txt_cadastro_nome.setEnabled(true);
         txt_cadastro_cpf.setEnabled(true);
-        txt_cadastro_dataNasc.setEnabled(true);
+        txt_cadastro_tel.setEnabled(true);
         txt_cadastro_email.setEnabled(true);
         txt_cadastro_cidade.setEnabled(true);
         txt_cadastro_endereco.setEnabled(true);
         txt_cadastro_estado.setEnabled(true);
-        txt_cadastro_tel.setEnabled(true);
+        txt_dataNascimento.setEnabled(true);
         btn_cancelar.setEnabled(true);
         btn_salvar.setEnabled(true);
 
@@ -577,12 +598,12 @@ public class UI_Clientes extends javax.swing.JFrame {
             tbl_clientes.setEnabled(false);
             txt_cadastro_nome.setEnabled(true);
             txt_cadastro_cpf.setEnabled(true);
-            txt_cadastro_dataNasc.setEnabled(true);
+            txt_cadastro_tel.setEnabled(true);
             txt_cadastro_email.setEnabled(true);
             txt_cadastro_cidade.setEnabled(true);
             txt_cadastro_endereco.setEnabled(true);
             txt_cadastro_estado.setEnabled(true);
-            txt_cadastro_tel.setEnabled(true);
+            txt_dataNascimento.setEnabled(true);
             btn_cancelar.setEnabled(true);
             btn_salvar.setEnabled(true);
         }
@@ -611,6 +632,10 @@ public class UI_Clientes extends javax.swing.JFrame {
     private void btn_novoCliente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoCliente3ActionPerformed
         JOptionPane.showMessageDialog(null, idUser);
     }//GEN-LAST:event_btn_novoCliente3ActionPerformed
+
+    private void txt_cadastro_telActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cadastro_telActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cadastro_telActionPerformed
 
     /**
      * @param args the command line arguments
@@ -673,14 +698,14 @@ public class UI_Clientes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_clientes;
     private javax.swing.JTextField txt_cadastro_cidade;
-    private javax.swing.JTextField txt_cadastro_cpf;
-    private javax.swing.JTextField txt_cadastro_dataNasc;
+    private javax.swing.JFormattedTextField txt_cadastro_cpf;
     private javax.swing.JTextField txt_cadastro_email;
     private javax.swing.JTextField txt_cadastro_endereco;
     private javax.swing.JTextField txt_cadastro_estado;
     private javax.swing.JTextField txt_cadastro_nome;
     private javax.swing.JTextField txt_cadastro_tel;
-    private javax.swing.JTextField txt_pesquisaCPF;
+    private javax.swing.JFormattedTextField txt_dataNascimento;
+    private javax.swing.JFormattedTextField txt_pesquisaCPF;
     private javax.swing.JTextField txt_pesquisaEmail;
     private javax.swing.JTextField txt_pesquisaNome;
     // End of variables declaration//GEN-END:variables

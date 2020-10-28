@@ -76,7 +76,7 @@ public class UI_Produtos extends javax.swing.JFrame {
         btn_salvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Loja Elétrica - Clientes");
+        setTitle("Loja Elétrica - Produtos");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
